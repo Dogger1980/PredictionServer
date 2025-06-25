@@ -61,7 +61,7 @@
 }
 ```
 
-И ответ `status.HTTP_200_OK`.
+И ответ `status.HTTP_200_OK`. Размер массива чисел определяется в ``settings.EXIT_LENGTH``.
 При ошибке валидации ответа вызывается `status.HTTP_500_INTERNAL_SERVER_ERROR`.
 
 ## Требования
@@ -73,18 +73,18 @@
 (Для Windows)
 1. Клонируйте репозиторий:
 ```PowerShell
-git clone https://github.com/Dogger1980/PredictionServer
+git clone https://github.com/Dogger1980/PredictionServer.git
 ```
 2. Перейдите в ``...\nnpredictor``. Создайте и активируйте виртуальное окружение:
 ```PowerShell
 python -m venv venv
 .\\venv\Scripts\activate
 ```
-3. Установите зависимости:
+3. Вернитесь в предыдущую директорию и установите зависимости:
 ```PowerShell
 pip install -r requirements.txt
 ```
-4. Перейдите в ``...\nnpredictor\nnpredictor`` и запустите сервер:
+4. Перейдите в ``...\nnpredictor`` и запустите сервер:
 ```PowerShell
 python manage.py runserver
 ```
