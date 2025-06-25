@@ -84,9 +84,9 @@ python -m venv venv
 ```PowerShell
 pip install -r requirements.txt
 ```
-4. Перейдите в ``...\nnpredictor`` и запустите сервер:
+4. Перейдите в ``...\nnpredictor\nnpredictor`` и запустите сервер:
 ```PowerShell
-python manage.py runserver
+uvicorn nnpredictor.asgi:application
 ```
 
 API будет доступен по адресу ``http://127.0.0.1:8000/predictionserver/predict/``.
@@ -111,12 +111,12 @@ Allow: POST, OPTIONS
 Content-Length: 14690
 Content-Type: application/json
 Cross-Origin-Opener-Policy: same-origin
-Date: Wed, 25 Jun 2025 12:18:06 GMT
 Referrer-Policy: same-origin
-Server: WSGIServer/0.2 CPython/3.12.2
 Vary: Accept, Cookie
 X-Content-Type-Options: nosniff
 X-Frame-Options: DENY
+date: Wed, 25 Jun 2025 19:15:04 GMT
+server: uvicorn
 
 { 
     "bitDepth": [3.1331143379211426,5.2691850662231445,...], 

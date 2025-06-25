@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'uvicorn',
     'predictionserver',
 ]
 
@@ -68,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'nnpredictor.wsgi.application'
+ASGI_APPLICATION = 'nnpredictor.asgi.application'
 
 
 # Database
