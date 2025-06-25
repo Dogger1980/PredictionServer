@@ -5,6 +5,8 @@ import os
 _model = None
 
 def model_loader():
+    """Загружает модель для прогнозирования с помощью tensorflow.keras.models.load_model.
+       Если не выходит, то возвращает ошибку ValueError"""
     global _model
     if _model is None:
         modelPath = os.path.join(settings.MODEL_DIR, 'cnn.keras')
@@ -14,4 +16,6 @@ def model_loader():
             raise ValueError(f"Неподдерживаемый формат модели, либо модели нет в папке {modelPath}")
 
 def get_model():
+    """Для загрузки модели при начале работы сервера
+    """
     return _model

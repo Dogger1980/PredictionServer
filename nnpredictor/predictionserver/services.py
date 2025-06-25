@@ -4,6 +4,9 @@ from .apps import PredictionserverConfig
 from .loader import get_model
     
 def convert_input_data(inputData):
+    """Преобразует входные данные в тензор вида (1, input_length, features_total).
+       3-х мерный тензор необходим исходя из формата данных как временных рядов.
+    """
     inputArrays = []
     
     for field in inputData:
@@ -14,6 +17,8 @@ def convert_input_data(inputData):
     return input_array.astype('float32')
 
 def convert_output_data(outputData):
+    """Преобразует прогноз из тензора вида (1, exit_length * features_total) в JSON-like словарь.
+    """
     outputArrays = np.reshape(outputData, (settings.EXIT_LENGTH, settings.FEATURES_TOTAL))
     outputArrays = outputArrays.T
     out = {}
