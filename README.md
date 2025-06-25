@@ -1,0 +1,118 @@
+# PredictionServer [WIP]
+
+Получает POST и выдает сгенерированные данные. Без БД.
+
+## Общие сведения
+
+### Точки входа
+
+``POST /predictionserver/predict/``
+Обрабатывает входящие данные датчиков и возвращает результат.
+
+### Формат запроса
+
+Принимается JSON следующей структуры (порядок обязателен):
+
+``{
+    "wellDepth": [массив чисел], 
+    "bitDepth": [массив чисел],
+    "wOB": [массив чисел],
+    "hookLoad": [массив чисел],
+    "sPP": [массив чисел],
+    "flowRateIn": [массив чисел],
+    "surfaceTorque": [массив чисел],
+    "surfaceRPM": [массив чисел],
+    "blockPosition": [массив чисел],
+    "trippingSpeed": [массив чисел],
+    "rOP": [массив чисел]
+}``
+
+
+### Требования к входным данным
+
+Во входных данных:
+- Массивы обязательно непустые;
+- Состоят из чисел с плавающей точкой;
+- Имеют длину `settings.REQ_LENGTH_INPUT` (расположена в `settings.py`).
+
+При ошибке валиадци данных вызывается `status.HTTP_400_BAD_REQUEST`.
+
+### Формат ответа
+
+Возвращается JSON следующей структуры (может иметь иной порядок):
+
+``{
+    "wellDepth": [массив чисел], 
+    "bitDepth": [массив чисел],
+    "wOB": [массив чисел],
+    "hookLoad": [массив чисел],
+    "sPP": [массив чисел],
+    "flowRateIn": [массив чисел],
+    "surfaceTorque": [массив чисел],
+    "surfaceRPM": [массив чисел],
+    "blockPosition": [массив чисел],
+    "trippingSpeed": [массив чисел],
+    "rOP": [массив чисел]
+}``
+
+И ответ `status.HTTP_200_OK`.
+При ошибке валидации ответа вызывается `status.HTTP_500_INTERNAL_SERVER_ERROR`.
+
+## Требования
+
+- Python 3.12.2+;
+- библиотеки и их версии, указанные в `requirements.txt`.
+
+## Установка
+(Для Windows)
+1. Клонируйте репозиторий:
+```PowerShell
+git clone https://github.com/Dogger1980/PredictionServer
+```
+2. Перейдите в ``...\nnpredictor``. Создайте и активируйте виртуальное окружение:
+```PowerShell
+python -m venv venv
+.\\venv\Scripts\activate
+```
+3. Установите зависимости:
+```PowerShell
+pip install -r requirements.txt
+```
+4. Перейдите в ``...\nnpredictor\nnpredictor`` и запустите сервер:
+```PowerShell
+python manage.py runserver
+```
+
+API будет доступен по адресу ``http://127.0.0.1:8000/predictionserver/predict/``.
+
+## Примеры запросов и ответов
+
+Используя httpie (``pip install httpie``):
+### Запрос
+```PowerShell 
+http POST http://127.0.0.1:8000/predictionserver/predict/ wellDepth:='[1.1, 2.2, 3.3]' bitDepth:='[4.4, 5.5, 6.6]' wOB:='[7.7, 8.8, 9.9]' hookLoad:='[10.1, 11.1, 12.1]' sPP:='[13.1, 14.1, 15.1]' flowRateIn:='[16.1, 17.1, 18.1]' surfaceTorque:='[19.1, 20.1, 21.1]' surfaceRPM:='[22.1, 23.1, 24.1]' blockPosition:='[25.1, 26.1, 27.1]' trippingSpeed:='[28.1, 29.1, 30.1]' rOP:='[31.1, 32.1, 33.1]'
+```
+
+### Ответ
+
+
+
+```PowerShell 
+HTTP/1.1 200 OK
+Allow: POST, OPTIONS
+Content-Length: 14690
+Content-Type: application/json
+Cross-Origin-Opener-Policy: same-origin
+Date: Wed, 25 Jun 2025 12:18:06 GMT
+Referrer-Policy: same-origin
+Server: WSGIServer/0.2 CPython/3.12.2
+Vary: Accept, Cookie
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+
+{ 
+    "bitDepth": [3.1331143379211426,5.2691850662231445,...], 
+    "blockPosition": [...],
+     ...
+}
+```
