@@ -15,7 +15,8 @@
 
 Принимается JSON следующей структуры (порядок обязателен):
 
-``{
+```PowerShell
+{
     "wellDepth": [массив чисел], 
     "bitDepth": [массив чисел],
     "wOB": [массив чисел],
@@ -27,7 +28,8 @@
     "blockPosition": [массив чисел],
     "trippingSpeed": [массив чисел],
     "rOP": [массив чисел]
-}``
+}
+```
 
 
 ### Требования к входным данным
@@ -91,15 +93,17 @@ API будет доступен по адресу ``http://127.0.0.1:8000/predic
 
 ## Примеры запросов и ответов
 
-Используя httpie (``pip install httpie``):
-### Запрос
+### Пример 1
+
+Используя ``httpie`` и ``PowerShell`` (``pip install httpie``):
+
+#### Запрос
+
 ```PowerShell 
 http POST http://127.0.0.1:8000/predictionserver/predict/ wellDepth:='[1.1, 2.2, 3.3]' bitDepth:='[4.4, 5.5, 6.6]' wOB:='[7.7, 8.8, 9.9]' hookLoad:='[10.1, 11.1, 12.1]' sPP:='[13.1, 14.1, 15.1]' flowRateIn:='[16.1, 17.1, 18.1]' surfaceTorque:='[19.1, 20.1, 21.1]' surfaceRPM:='[22.1, 23.1, 24.1]' blockPosition:='[25.1, 26.1, 27.1]' trippingSpeed:='[28.1, 29.1, 30.1]' rOP:='[31.1, 32.1, 33.1]'
 ```
 
-### Ответ
-
-
+#### Ответ
 
 ```PowerShell 
 HTTP/1.1 200 OK
@@ -120,3 +124,15 @@ X-Frame-Options: DENY
      ...
 }
 ```
+
+### Пример 2
+
+Используя ``POSTMAN``.
+
+#### Запрос
+
+![Запрос на POST в POSTMAN](images/POST.png)
+
+#### Ответ
+
+![Ответ сервера в POSTMAN](images/RESPONSE.png)
