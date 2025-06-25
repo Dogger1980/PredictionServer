@@ -85,7 +85,7 @@ python -m venv venv
 ```PowerShell
 pip install -r requirements.txt
 ```
-4. Перейдите в ``...\nnpredictor\nnpredictor`` и запустите сервер:
+4. Перейдите в ``...\nnpredictor`` и запустите сервер:
 ```PowerShell
 uvicorn nnpredictor.asgi:application
 ```
