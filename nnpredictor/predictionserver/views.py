@@ -5,6 +5,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from .services import make_prediction
 from django.conf import settings
+from asgiref.sync import sync_to_async
+import asyncio
 
 
 def validate_data(data):
