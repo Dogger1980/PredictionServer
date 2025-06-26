@@ -76,12 +76,12 @@
 ```PowerShell
 git clone https://github.com/Dogger1980/PredictionServer.git
 ```
-2. Перейдите в ``...\nnpredictor``. Создайте и активируйте виртуальное окружение:
+2. Перейдите в папку проекта. Создайте и активируйте виртуальное окружение:
 ```PowerShell
 python -m venv venv
 .\\venv\Scripts\activate
 ```
-3. Вернитесь в предыдущую директорию и установите зависимости:
+3. Установите зависимости:
 ```PowerShell
 pip install -r requirements.txt
 ```
