@@ -8,6 +8,8 @@ class PredictionserverConfig(AppConfig):
     model = None
 
     def ready(self):
+        """Загружает модель при старте приложения
+        """
         import os
         if os.environ.get('RUN_MAIN') or not os.environ.get('DJANGO_AUTORELOAD'):
             from .loader import model_loader
