@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'uvicorn',
+    'drf_spectacular',
     'predictionserver',
 ]
 
@@ -100,6 +101,19 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Настройки DRF
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+# Опциональные настройки drf-spectacular
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'PredictionServer API',
+    'DESCRIPTION': 'Прогнозирование многомерных временных рядов по датчикам буровой установки. Включает в себя единственный POST-запрос.',
+    'VERSION': '0.1.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
 
 
 # Internationalization

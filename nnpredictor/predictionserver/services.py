@@ -1,11 +1,10 @@
 import numpy as np
 from django.conf import settings
-from .apps import PredictionserverConfig
 from .loader import get_model
     
 def convert_input_data(inputData):
-    """Преобразует входные данные в тензор вида (1, input_length, features_total).
-       3-х мерный тензор необходим исходя из формата данных как временных рядов.
+    """Преобразует входные данные в тензор вида (1, input_length, features_total). \n
+       3-х мерный тензор необходим исходя из формата данных как временных рядов и особенностей работы модели.
     """
     inputArrays = []
     
@@ -28,6 +27,8 @@ def convert_output_data(outputData):
     return out
     
 def make_prediction(inputData):
+    """Создает прогноз на основе входных данных.
+    """
     data = convert_input_data(inputData)
     model = get_model()
     prediction = model.predict(data)
