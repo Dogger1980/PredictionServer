@@ -9,9 +9,11 @@
 
 ### Точки входа
 
-``/predictionserver/predict/`` - обрабатывает входящие данные датчиков через POST-запрос и возвращает результат.
-``/predictionserver/schema/`` - автоматически генерирует схему API.
-``/predictionserver/swagger/`` - предоставляет Swagger UI интерфейс для интерактивной документации API.
+- ``/predictionserver/predict/`` - обрабатывает входящие данные датчиков через POST-запрос и возвращает результат.
+
+- ``/predictionserver/schema/`` - автоматически генерирует схему API.
+
+- ``/predictionserver/swagger/`` - предоставляет Swagger UI для интерактивной документации API.
 
 ### Формат запроса
 
