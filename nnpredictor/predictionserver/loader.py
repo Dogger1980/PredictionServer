@@ -2,20 +2,20 @@ from tensorflow.keras.models import load_model
 from django.conf import settings
 import os
 
-_model = None
+_models = []
 
-def model_loader():
-    """Загружает модель для прогнозирования с помощью tensorflow.keras.models.load_model.
+def models_loader():
+    """Загружает модели для прогнозирования с помощью tensorflow.keras.models.load_model.
        Если не получается, то возвращает ошибку ValueError"""
-    global _model
-    if _model is None:
-        modelPath = os.path.join(settings.MODEL_DIR, 'cnn.keras')
-        if modelPath.endswith(".keras"):
-            _model = load_model(modelPath)
-        else:
-            raise ValueError(f"Неподдерживаемый формат модели, либо модели нет в папке {modelPath}")
+    global _models
+    for i in range(1, 11):
+        modelPath = os.path.join(settings.MODELS_DIR, f'wmodel_checkpoint{i}.keras')
+        try:
+            _models.append(load_model(modelPath))
+        except:
+            raise ValueError(f"Неподдерживаемый формат моделей, либо моделей нет по адресу {modelPath}")
 
-def get_model():
-    """Возвращает уже загруженную модель
+def get_models():
+    """Возвращает уже загруженные модели
     """
-    return _model
+    return _models

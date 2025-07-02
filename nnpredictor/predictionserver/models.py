@@ -5,7 +5,6 @@ class SensorData(models.Model):
     wellDepth     = models.JSONField(default=list, blank=False)
     bitDepth      = models.JSONField(default=list, blank=False)
     wOB           = models.JSONField(default=list, blank=False)
-    hookLoad      = models.JSONField(default=list, blank=False)
     sPP           = models.JSONField(default=list, blank=False)
     flowRateIn    = models.JSONField(default=list, blank=False)
     surfaceTorque = models.JSONField(default=list, blank=False)
