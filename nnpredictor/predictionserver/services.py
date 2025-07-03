@@ -41,8 +41,9 @@ def _predict(args):
 
 def predict(models, data):
     tasks = [(model, inputData) for model, inputData in zip(models, data)]
-    with Pool(processes=len(models)) as pool:
-        results = pool.map(_predict, tasks)
+    results = []
+    for task in tasks:
+        results.append(_predict(task))
 
     return results
     
