@@ -40,6 +40,7 @@ class SensorPOST(APIView):
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
+        
         predictedData = make_prediction(serializer.data)
 
         if not is_valid(predictedData):

@@ -1,6 +1,7 @@
 from django.apps import AppConfig
-from django.conf import settings 
-
+from django.conf import settings
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 class PredictionserverConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
@@ -21,6 +22,7 @@ class PredictionserverConfig(AppConfig):
         import numpy as np
         from .loader import get_models
         from .services import predict
+
         dummy_data = np.random.uniform(0, 0, (10, 1, 600, 1))
         models = get_models()
         predict(models, dummy_data)
