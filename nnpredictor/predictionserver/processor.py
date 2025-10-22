@@ -6,6 +6,7 @@ def convert_input_data(inputData):
        3-х мерный тензор необходим исходя из формата данных как временных рядов и особенностей работы моделей.
     """
     inputArrays = []
+    eps = 1e-3
 
     for field in inputData:
         data = np.array(inputData[field], dtype=np.float32)
@@ -14,7 +15,7 @@ def convert_input_data(inputData):
         settings.STDS[field] = np.sqrt((1 / (n - 1)) * (np.sum(dataPoint ** 2 for dataPoint in data) - n * settings.MEANS[field] ** 2))
 
         data -= settings.MEANS[field]
-        data /= settings.STDS[field]
+        data /= settings.STDS[field] + eps
         inputField = np.reshape(data, (1, settings.REQ_LENGTH_INPUT, 1))
         inputArrays.append(inputField)
 
