@@ -1,6 +1,5 @@
 from tensorflow.keras.models import load_model
 from django.conf import settings
-import multiprocessing as mp
 from django.conf import settings
 import os
 
