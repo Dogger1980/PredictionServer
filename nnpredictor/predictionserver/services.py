@@ -1,6 +1,6 @@
 from .loader import get_models
 from .predictor import predict
-from .processor import convert_input_data, convert_output_data
+from .processor import *
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
     
