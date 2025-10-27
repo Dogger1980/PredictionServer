@@ -12,12 +12,17 @@ def convert_input_data(inputData, compress = False, compressionCoeff = 30):
         data = np.array(inputData[field], dtype=np.float32)
         n = len(data)
         settings.MEANS[field] = (1 / n) * np.sum(data)
-        settings.STDS[field] = np.sqrt((1 / (n - 1)) * (np.sum(dataPoint ** 2 for dataPoint in data) - n * settings.MEANS[field] ** 2))
+        settings.STDS[field] = np.sqrt(
+            (1 / (n - 1)) * (np.sum(dataPoint ** 2 for dataPoint in data) - n * settings.MEANS[field] ** 2)
+            )
 
         data -= settings.MEANS[field]
         data /= settings.STDS[field] + eps
-        if compress: data = _compress_data(data, compressionCoeff)
-        inputField = np.reshape(data, (1, settings.REQ_LENGTH_INPUT, 1))
+        if compress: 
+            data = _compress_data(data, compressionCoeff)
+            inputField = np.reshape(data, (1, settings.REQ_LENGTH_INPUT // compressionCoeff, 1))
+        else:
+            inputField = np.reshape(data, (1, settings.REQ_LENGTH_INPUT, 1))
         inputArrays.append(inputField)
 
     return inputArrays
@@ -44,8 +49,8 @@ def _compress_data(data, coeff = 30):
     compressedData[-1] = data[-1]
 
     for i, start in zip(
-        range(1, len(compressedData)-1, 2), 
-        range(0, len(data), coeff*2)):
+        range(1, len(compressedData) - 1, 2), 
+        range(0, len(data), coeff * 2)):
 
         if (i + 1) < len(compressedData):
             pt1 = data[start:start + coeff]

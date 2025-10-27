@@ -44,6 +44,6 @@ class SensorPOST(APIView):
         predictedData = make_prediction(serializer.data)
 
         if not is_valid(predictedData):
-            return Response({"error": "Internal processing error"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({"error": "Data is invalid"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
         return Response(predictedData, status=status.HTTP_200_OK)
