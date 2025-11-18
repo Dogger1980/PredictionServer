@@ -13,7 +13,7 @@ def convert_input_data(inputData, compress = False, compressionCoeff = 30):
         n = len(data)
         settings.MEANS[field] = (1 / n) * sum(data)
         settings.STDS[field] = np.sqrt(
-            (1 / (n - 1)) * sum(dataPoint - settings.MEANS[field] for dataPoint in data) ** 2
+            (1 / (n - 1)) * sum((dataPoint - settings.MEANS[field]) ** 2 for dataPoint in data)
             )
 
         data -= settings.MEANS[field]
