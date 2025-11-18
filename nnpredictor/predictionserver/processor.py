@@ -11,9 +11,9 @@ def convert_input_data(inputData, compress = False, compressionCoeff = 30):
     for field in inputData:
         data = np.array(inputData[field], dtype=np.float32)
         n = len(data)
-        settings.MEANS[field] = (1 / n) * np.sum(data)
+        settings.MEANS[field] = (1 / n) * sum(data)
         settings.STDS[field] = np.sqrt(
-            (1 / (n - 1)) * (np.sum(dataPoint ** 2 for dataPoint in data) - n * settings.MEANS[field] ** 2)
+            (1 / (n - 1)) * sum(dataPoint - settings.MEANS[field] for dataPoint in data) ** 2
             )
 
         data -= settings.MEANS[field]
@@ -31,8 +31,8 @@ def _compress_data(data, coeff = 30):
     """## Алгоритм сжатия данных. \n
        Только для использования внутри модуля `processor.py`. \n
        ## Принцип работы: \n
-         coeff * 2 точек временного ряда распадаются на две части, по coeff каждая,
-        и сжимаются в 2 точки, причем в зависимости от "топологии" ряда:
+       coeff * 2 точек временного ряда распадаются на две части, по coeff каждая, \n
+       и сжимаются в 2 точки, причем в зависимости от "топологии" ряда:
        - если во второй части сначала минимальный элемент этой части, а затем максимальный, \n
          то первая точка становится минимальным элементом coeff * 2 отрезка, вторая —\n
          максимальным второй части; \n
@@ -53,11 +53,11 @@ def _compress_data(data, coeff = 30):
         range(0, len(data), coeff * 2)):
 
         if (i + 1) < len(compressedData):
-            pt1 = data[start:start + coeff]
-            pt2 = data[start + coeff:start + coeff * 2]
+            pt1 = data[start         : start + coeff]
+            pt2 = data[start + coeff : start + coeff * 2]
 
             maxPt1, minPt1 = np.max(pt1),    np.min(pt1)
-            minPt2, maxPt2 = np.min(pt2),    np.max(pt2)
+            maxPt2, minPt2 = np.max(pt2),    np.min(pt2)
             idxMax, idxMin = np.argmax(pt2), np.argmin(pt2)
 
             if idxMin < idxMax:

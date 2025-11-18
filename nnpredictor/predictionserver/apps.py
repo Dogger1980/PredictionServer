@@ -24,7 +24,7 @@ class PredictionserverConfig(AppConfig):
         from .services import predict
         from .processor import convert_input_data
 
-        dummy_data = np.random.uniform(0, 1, (10, settings.REQ_LENGTH_INPUT))
+        dummy_data = np.random.uniform(0, 1, (len(settings.FIELDS), settings.REQ_LENGTH_INPUT))
         dummy_dict = {}
         for idx, field in enumerate(settings.FIELDS):
             dummy_dict[field] = dummy_data[idx]
