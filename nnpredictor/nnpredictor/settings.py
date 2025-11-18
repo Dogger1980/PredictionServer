@@ -140,7 +140,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Constants
 MODELS_DIR = os.path.join(BASE_DIR, 'predictionserver', 'nn_models')
-EXIT_LENGTH = 120
+EXIT_LENGTH = 4
 FIELDS = ['wellDepth', 'bitDepth', 'wOB', 'sPP', 'flowRateIn', 'surfaceTorque', 'surfaceRPM', 'blockPosition', 'trippingSpeed', 'rOP']
 FEATURES_TOTAL = len(FIELDS)
 REQ_LENGTH_INPUT = 600
