@@ -4,7 +4,7 @@ from django.conf import settings
 def _predict(args) -> list:
     model, inputData = args    
     pred = model.predict(inputData, batch_size=16, verbose=0)[:, -1]
-    return np.reshape(pred, (settings.EXIT_LENGTH)).tolist()
+    return np.reshape(pred, (settings.EXIT_LENGTH + 1)).tolist()[1:] # Внимание! берётся + 1 и [1:] из-за архитектуры моделей, в будущем может быть неверно
 
 def predict(models, data):
     tasks = [(model, inputData) for model, inputData in zip(models, data)]
