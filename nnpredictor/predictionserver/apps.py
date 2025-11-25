@@ -29,7 +29,7 @@ class PredictionserverConfig(AppConfig):
         for idx, field in enumerate(settings.FIELDS):
             dummy_dict[field] = dummy_data[idx]
 
-        dummy_data = convert_input_data(dummy_dict, compress=True)
+        dummy_data, MEANS, STDS = convert_input_data(dummy_dict, compress=True)
         models = get_models()
         predict(models, dummy_data)
         

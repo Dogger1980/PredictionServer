@@ -140,10 +140,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Constants
 MODELS_DIR = os.path.join(BASE_DIR, 'predictionserver', 'nn_models')
-EXIT_LENGTH = 5
+EXIT_LENGTH = 4
 FIELDS = ['wellDepth', 'bitDepth', 'wOB', 'sPP', 'flowRateIn', 'surfaceTorque', 'surfaceRPM', 'blockPosition', 'trippingSpeed', 'rOP']
 FEATURES_TOTAL = len(FIELDS)
 REQ_LENGTH_INPUT = 15000
-# Данные для холодного старта, не должны использоваться для реального прогнозирования
-MEANS = {"wellDepth" : 823.2375705988211, "bitDepth" : 509.99035448548574, "wOB" : 0.35424483686138347, "sPP" : 22.46055188219852, "flowRateIn" : 8.436832413606632, "surfaceTorque" : 2.004083127911857, "surfaceRPM" : 9.864737685724593, "blockPosition" : 12.258214255042056, "trippingSpeed" : 0.0323337854956623, "rOP" : 38.85209902392712}
-STDS = {"wellDepth" : 357.65324119764614, "bitDepth" : 389.88514874229276, "wOB" : 1.263494967993503, "sPP" : 37.72799034848868, "flowRateIn" : 14.903409964648077, "surfaceTorque" : 2.809720676366944, "surfaceRPM" : 20.92180449797566, "blockPosition" : 8.900226107657316, "trippingSpeed" : 0.10568595969692353, "rOP" : 32.45560604866986}
