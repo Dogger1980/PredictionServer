@@ -78,5 +78,6 @@ def convert_output_data(outputData):
         value *= settings.STDS[field]
         value += settings.MEANS[field]
         out[field] = value.tolist()
+        print("convert_output_data. out["+field+"]: " + ' '.join(str(item) for item in out[field]), flush=True)
 
     return out

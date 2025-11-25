@@ -13,10 +13,13 @@ def is_valid(data):
     - Все характеристики, хранящиеся в settings.FIELDS, присутствуют в ответе.
     """
     for field in settings.FIELDS:
+        print("convert_output_data. out["+field+"]: " + ' '.join(str(item) for item in data[field]), flush=True)
         if len(data[field]) != settings.EXIT_LENGTH:
+            print("is_valid = False. len(data["+field+"]) != settings.EXIT_LENGTH: " + str(len(data[field])) +"!="+ str(settings.EXIT_LENGTH), flush=True)
             return False
         if field not in data:
             return False
+            print("is_valid = False. "+field+" not in data: ", flush=True)
     return True
         
 # Create your views here.
