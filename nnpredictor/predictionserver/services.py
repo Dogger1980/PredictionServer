@@ -9,7 +9,7 @@ def make_prediction(inputData):
     """Создает прогноз на основе входных данных.
     """
     start = time.time()
-    data, MEANS, STDS = convert_input_data(inputData, compress=True)
+    data = convert_input_data(inputData, compress=True)
     end = time.time()
     print("convert_input_data: " + str((end - start) * 1000) + "ms", flush=True)
 
@@ -24,7 +24,7 @@ def make_prediction(inputData):
     print("predict: " + str((end - start) * 1000) + "ms", flush=True)
     
     start = time.time()
-    result = convert_output_data(prediction, MEANS, STDS)
+    result = convert_output_data(prediction)
     end = time.time()
     print("convert_output_data: " + str((end - start) * 1000) + "ms", flush=True)
 

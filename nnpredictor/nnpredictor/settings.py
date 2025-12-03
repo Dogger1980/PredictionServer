@@ -144,3 +144,5 @@ EXIT_LENGTH = 4
 FIELDS = ['wellDepth', 'bitDepth', 'wOB', 'sPP', 'flowRateIn', 'surfaceTorque', 'surfaceRPM', 'blockPosition', 'trippingSpeed', 'rOP']
 FEATURES_TOTAL = len(FIELDS)
 REQ_LENGTH_INPUT = 15000
+MEANS = {'wellDepth' : 2161.0833955655517, 'bitDepth' : 2067.5077770739417, 'wOB' : 4.2398262812639285, 'sPP' : 176.4146868682732, 'flowRateIn' : 8.972398436125175, 'surfaceTorque' : 1.5627030878537536, 'surfaceRPM' : 20.400600390744817, 'blockPosition' : 10.818161196441686, 'trippingSpeed' : 0.016199284579315864, 'rOP' : 7.198548514930246}
+STDS = {'wellDepth' : 27.202551910812623, 'bitDepth' : 25.78332861325339, 'wOB' : 4.255753988289547, 'sPP' : 55.15125553679479, 'flowRateIn' : 2.424926495907399, 'surfaceTorque' : 1.8318372377009455, 'surfaceRPM' : 19.50533079664873, 'blockPosition' : 5.638382049306674, 'trippingSpeed' : 0.03633323088076333, 'rOP' : 9.275388604348132}
