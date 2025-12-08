@@ -19,7 +19,6 @@ def is_valid(data):
             return False
         if field not in data:
             return False
-            print("is_valid = False. "+field+" not in data: ", flush=True)
     return True
         
 # Create your views here.
